@@ -99,7 +99,7 @@ class gf_addon_incrementor_Admin {
 		wp_enqueue_script( 
 			$this->gf_addon_incrementor, 
 			plugin_dir_url( __FILE__ ) . 'js/gf-addon-incrementor-admin.js', 
-			array(), 
+			array( 'jquery' ), 
 			$this->version, false 
 		);
 
