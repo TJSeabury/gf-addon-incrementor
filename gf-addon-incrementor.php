@@ -4,7 +4,7 @@
  *
  * @since             1.0.0
  * @package           gf_addon_incrementor
- * @author			  Tyler Seabury
+ * @author     		  Tyler Seabury <tyler@marketmentors.com>
  *
  * @wordpress-plugin
  * Plugin Name:       GF Addon Incrementor
@@ -30,6 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'GF_ADDON_INCREMENTOR_VERSION', '1.0.0' );
+define( 'GF_ADDON_INCREMENTOR_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
