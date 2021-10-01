@@ -142,7 +142,7 @@ class GFMetaIncrementor extends GFAddOn {
             // Fill the hidden field with the correct pre and postfixed index.
             $submissionIndexField = $this->get_field_by_label( $form, $settings['label'] );
             $id = $submissionIndexField['id'];
-            $_POST['input_'.$id] = $settings['prefix'].$settings['submission_index'].$settings['postfix'];
+            $_POST["input_{$id}"] = "{$settings['prefix']}{$settings['submission_index']}{$settings['postfix']}";
             
             // Increment the index in forms settings.
             ++$settings['submission_index'];
