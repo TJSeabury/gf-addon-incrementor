@@ -59,8 +59,16 @@ class GFMetaIncrementor extends GFAddOn {
                     ),
                     array(
                         'type'    => 'text',
+                        'name'    => 'label',
+                        'label'   => esc_html__( 'Field Label', $this->_slug ),
+                        'tooltip' => esc_html__( 'The displayed field label.', $this->_slug ),
+                        'default_value' => 'Submission Index',
+                        'class'   => 'medium',
+                    ),
+                    array(
+                        'type'    => 'text',
                         'name'    => 'submission_index',
-                        'label'   => esc_html__( 'Auto-incremented Invoice Number', $this->_slug ),
+                        'label'   => esc_html__( 'Auto-incremented Submission Index', $this->_slug ),
                         'tooltip' => esc_html__( 'The definable auto-incrementing index of this form.', $this->_slug ),
                         'default_value' => '1',
                         'class'   => 'medium',
@@ -109,12 +117,12 @@ class GFMetaIncrementor extends GFAddOn {
         $settings = $this->get_form_settings( $form );
         if ( isset( $settings['enabled'] ) && 'false' != $settings['enabled'] ) {
             // Only add the field to forms that have the setting enabled.
-            $submissionIndexField = $this->get_field_by_label( $form, 'Invoice Number' );
+            $submissionIndexField = $this->get_field_by_label( $form, $settings['label'] );
             if ( $is_new || false == $submissionIndexField ) {
                 $new_field_id = GFFormsModel::get_next_field_id( $form['fields'] );
                 $form['fields'][] = array(
                     'type'         => 'hidden',
-                    'label'        => 'Invoice Number',
+                    'label'        => $settings['label'],
                     'id'           => $new_field_id,
                     'defaultValue' => 0,
                     'formId'       => $form['id'],
@@ -126,13 +134,13 @@ class GFMetaIncrementor extends GFAddOn {
     }
 
     /** 
-     * Gets, increments, and saves the Invoice Number upon every form submission.
+     * Gets, increments, and saves the submission index upon every form submission. 
      */
     public function pre_submission( $form ) {
         $settings = $this->get_form_settings( $form );
         if ( isset( $settings['enabled'] ) && 'false' != $settings['enabled'] && isset( $settings['submission_index'] ) ) {
             // Fill the hidden field with the correct pre and postfixed index.
-            $submissionIndexField = $this->get_field_by_label( $form, 'Invoice Number' );
+            $submissionIndexField = $this->get_field_by_label( $form, $settings['label'] );
             $id = $submissionIndexField['id'];
             $_POST['input_'.$id] = $settings['prefix'].$settings['submission_index'].$settings['postfix'];
             
