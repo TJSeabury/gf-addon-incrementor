@@ -1,4 +1,7 @@
-/*  */
+/**
+ * This script removes serveral edit buttons in the 
+ * admin edit view for this plugin's field only.
+ */
 ( function ( d ) {
 	'use strict';
 	window.addEventListener( 'load', onLoad );
