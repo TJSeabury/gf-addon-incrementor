@@ -12,7 +12,7 @@
 			if ( !adminButtons ) continue;
 			let toRemove = [];
 			toRemove.push( adminButtons.querySelector( '.gfield-duplicate' ) );
-			//toRemove.push( adminButtons.querySelector('.gfield-edit') );
+			//toRemove.push( adminButtons.querySelector( '.gfield-edit' ) );
 			toRemove.push( adminButtons.querySelector( '.gfield-delete' ) );
 			for ( const button of toRemove ) {
 				if ( !button ) continue;
