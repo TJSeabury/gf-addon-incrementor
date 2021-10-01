@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    gf_addon_incrementor
  * @subpackage gf_addon_incrementor/includes
- * @author     Your Name <email@example.com>
+ * @author     Tyler Seabury <tyler@marketmentors.com>
  */
 class gf_addon_incrementor {
 
@@ -86,15 +86,19 @@ class gf_addon_incrementor {
 	/*
 	 * Load the Gravity Forms Add On bootstraper.
 	 */
-	public static function loadAddOn() {
+	public function loadAddOn() {
  
         if ( ! method_exists( 'GFForms', 'include_addon_framework' ) ) {
             return;
         }
  
         require_once( 'class-gf-addon-incrementor-main.php' );
+
+		/* function registerMetaIncrementor() {
+			return GFMetaIncrementor::get_instance();
+		} */
  
-        GFAddOn::register( GFMetaIncrementor::get_instance() );
+        GFAddOn::register( 'GFMetaIncrementor' );
     }
 
 	/**
