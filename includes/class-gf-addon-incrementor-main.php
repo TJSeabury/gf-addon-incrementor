@@ -148,7 +148,6 @@ class GFMetaIncrementor extends GFAddOn {
             ++$settings['submission_index'];
             $this->save_form_settings( $form, $settings );
         }
-        return $form;
     }
 
     private function get_field_by_label( $form, $label ) {
