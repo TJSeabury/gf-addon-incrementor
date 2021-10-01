@@ -86,19 +86,16 @@ class gf_addon_incrementor {
 	/*
 	 * Load the Gravity Forms Add On bootstraper.
 	 */
-	public function loadAddOn() {
+	public static function loadAddOn() {
  
         if ( ! method_exists( 'GFForms', 'include_addon_framework' ) ) {
             return;
         }
  
         require_once( 'class-gf-addon-incrementor-main.php' );
-
-		/* function registerMetaIncrementor() {
-			return GFMetaIncrementor::get_instance();
-		} */
  
-        GFAddOn::register( 'GFMetaIncrementor' );
+        //GFAddOn::register( GFMetaIncrementor::get_instance() );
+		GFAddOn::register( 'GFMetaIncrementor' );
     }
 
 	/**
