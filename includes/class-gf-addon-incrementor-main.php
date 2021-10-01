@@ -153,7 +153,7 @@ class GFMetaIncrementor extends GFAddOn {
 
     private function get_field_by_label( $form, $label ) {
         foreach( $form['fields'] as $field ) {
-            if( $field->label == $label ) {
+            if( $field->label === $label ) {
                 return $field;
             }
         }
