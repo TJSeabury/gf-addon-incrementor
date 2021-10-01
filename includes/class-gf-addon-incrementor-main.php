@@ -138,16 +138,23 @@ class GFMetaIncrementor extends GFAddOn {
      */
     public function pre_submission( $form ) {
         $settings = $this->get_form_settings( $form );
-        if ( isset( $settings['enabled'] ) && 'false' != $settings['enabled'] && isset( $settings['submission_index'] ) ) {
+        if ( isset( $settings['enabled'] ) && 'false' != $settings['enabled'] ) {
             // Fill the hidden field with the correct pre and postfixed index.
             $submissionIndexField = $this->get_field_by_label( $form, $settings['label'] );
             $id = $submissionIndexField['id'];
-            $_POST["input_{$id}"] = "{$settings['prefix']}{$settings['submission_index']}{$settings['postfix']}";
-            
-            // Increment the index in forms settings.
-            ++$settings['submission_index'];
-            $this->save_form_settings( $form, $settings );
+            $_POST["input_{$id}"] = $this->nextIndex( $form );
         }
+    }
+
+    private function nextIndex( $form ) {
+        $settings = $this->get_form_settings( $form );
+        if ( ! isset( $settings['submission_index'] ) ) throw new Error( 'Error: submission_index is not set!' );
+        // Increment the index in forms settings.
+        ++$settings['submission_index'];
+        // Build formatted index string
+        $index = "{$settings['prefix']}{$settings['submission_index']}{$settings['postfix']}";
+        $this->save_form_settings( $form, $settings );
+        return $index;
     }
 
     private function get_field_by_label( $form, $label ) {
