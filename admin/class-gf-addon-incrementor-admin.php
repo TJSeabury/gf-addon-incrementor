@@ -96,7 +96,12 @@ class gf_addon_incrementor_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->gf_addon_incrementor, plugin_dir_url( __FILE__ ) . 'js/gf-addon-incrementor-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 
+			$this->gf_addon_incrementor, 
+			plugin_dir_url( __FILE__ ) . 'js/gf-addon-incrementor-admin.js', 
+			array(), 
+			$this->version, false 
+		);
 
 	}
 
